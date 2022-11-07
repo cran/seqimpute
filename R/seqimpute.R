@@ -74,11 +74,14 @@
 #' the rownames of the dataset to impute. 
 #'
 #' @examples
+#' 
 #' # Default single imputation
 #' RESULT <- seqimpute(OD=OD, np=1, nf=1, nfi=1, npt=1, mi=1)
 #' 
 #' # Seqimpute used with parallelisation
+#' \dontrun{
 #' RESULT <- seqimpute(OD=OD, np=1, nf=1, nfi=1, npt=1, mi=2, ParExec=TRUE, SetRNGSeed=17,ncores=2)
+#' }
 #' 
 #' @references HALPIN, Brendan (2012). Multiple imputation for life-course sequence data. Working Paper WP2012-01, Department of Sociology, University of Limerick. http://hdl.handle.net/10344/3639.
 #' @references HALPIN, Brendan (2013). Imputing sequence data: Extensions to initial and terminal gaps, Stata's. Working Paper WP2013-01, Department of Sociology, University of Limerick. http://hdl.handle.net/10344/3620
@@ -124,6 +127,12 @@ seqimpute <- function(OD, regr="multinom", np=1, nf=0, nfi=1, npt=1,
   # 2. Computation of the order of imputation of each MD (i.e. updating of matrix ORDER) --------------------------------------------------------------------
   if (max(dataOD$ORDER)!=0) {
     dataOD[c("ORDERSLGLeft", "ORDERSLGRight", "ORDERSLGBoth", "LongGap", "MaxGap", "REFORD_L", "ORDER")] <- ImputeOrderComputation(dataOD$ORDER, dataOD$ORDER3, dataOD$MaxGap, np, nf, dataOD$nr, dataOD$nc)
+  }else{
+    dataOD$ORDERSLGLeft <- matrix(nrow=dataOD$nr,ncol=dataOD$nc,0)
+    dataOD$ORDERSLGRight <- matrix(nrow=dataOD$nr,ncol=dataOD$nc,0)
+    dataOD$ORDERSLGBoth <- matrix(nrow=dataOD$nr,ncol=dataOD$nc,0)
+    dataOD$LongGap <- FALSE
+
   }
   
   #Setting parallel or sequential backend and  random seed
