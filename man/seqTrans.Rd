@@ -2,29 +2,34 @@
 % Please edit documentation in R/seqTrans.R
 \name{seqTrans}
 \alias{seqTrans}
-\title{Computing and spotting transitions among a dataset}
+\title{Spotting impossible transitions in longitudinal categorical data}
 \usage{
-seqTrans(OD, trans)
+seqTrans(data, var = NULL, trans)
 }
 \arguments{
-\item{OD}{\code{matrix} object containing sequences of a variable with missing data (coded as \code{NA}).}
+\item{data}{a data frame containing sequences of a multinomial 
+variable with missing data (coded as \code{NA})}
 
-\item{trans}{\code{character} vector gathering the impossible transitions. For example: trans <- c("1->3","1->4","2->1","4->1","4->3")}
+\item{var}{the list of columns containing the trajectories. 
+Default is NULL, i.e. all the columns.}
+
+\item{trans}{\code{character} vector gathering the impossible transitions. 
+For example: trans <- c("1->3","1->4","2->1","4->1","4->3")}
 }
 \value{
-It returns a matrix whose rows each are the indices of an impossible transition.
+It returns a matrix where each row is the position of an 
+impossible transition.
 }
 \description{
-The purpose of \code{seqTrans.R} is to spot transitions
-in a dataset.
+The purpose of \code{seqTrans} is to spot impossible transitions
+in longitudinal categorical data.
 }
 \examples{
-data(OD)
+data(gameadd)
 
-seqTransList <- seqTrans(OD=OD, trans=c("yes->no"))
-
+seqTransList <- seqTrans(data = gameadd, var = 1:4, trans = c("yes->no"))
 
 }
 \author{
-Andre Berchtold <andre.berchtold@unil.ch>, Kevin Emery
+Andre Berchtold and Kevin Emery
 }

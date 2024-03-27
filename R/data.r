@@ -1,59 +1,31 @@
-#' Dataset containing variables about the game addiction of young subjects
+#' Example data set: Game addiction
+#' 
+#' @description
+#' Dataset containing variables on the gaming addiction of young people. 
+#' The data consists of gaming addiction, coded as either 'no' or 'yes', 
+#' measured over four consecutive years for 500 individuals, three covariates
+#' and one time-dependent covariate. The yearly states
+#' are recorded in columns 1 (\code{T1_abuse}) to 4 (\code{T4_abuse}).
 #'
-#' An original dataset example \code{OD} to test \code{seqimpute.R} and its aside functions.
+#' The three covariates are 
 #'
 #' \itemize{
-#'   \item 500 sequences (i.e. 500 rows)
-#'   \item 4 time measurements (i.e. 4 columns)
-#'   \item The variables can be either 'no', 'yes' or NA
+#'   \item \code{Gender} (female or male),
+#'   \item \code{Age} (measured at time 1), 
+#'   \item \code{Track} (school or apprenticeship).
 #' }
+#' 
+#' The time-varying covariate consists of the individual's relationship to 
+#' gambling at each of the four time points, appearing in columns
+#' \code{T1_gambling}, \code{T2_gambling}, 
+#' \code{T3_gambling}, and \code{T4_gambling}. The states are either 
+#' no, gambler or problematic gambler
+#' 
 #'
 #' @docType data
 #' @keywords datasets
-#' @name OD
-#' @usage data(OD)
-#' @format A data frame of factor variables with 500 sequences and 4 columns.
-"OD"
-
-
-
-
-
-#' Dataset containing 3 fixed covariates about the game addiction of young subjects
-#'
-#' These covariates are respectively '\code{Gender}' (\code{male}/\code{female}), '\code{Age}' (at \code{T1}, in years) and '\code{Track}' (\code{school}/\code{apprenticeship}).
-#'
-#' \itemize{
-#'   \item 500 sequences
-#'   \item 3 columns
-#' }
-#'
-#' @docType data
-#' @keywords datasets
-#' @name CO
-#' @usage data(CO)
-#' @format A data frame of fixed covariates with 500 sequences and 3 columns.
-"CO"
-
-
-
-#' Dataset containing 1 time-dependant covariate about the game addiction of young subjects
-#'
-#' This time-dependant covariate is the '\code{Gambling}' (\code{no}/\code{gambler}/\code{problematic gambler}) and contains thus the same number of columns as the original data frame \code{OD}: 4 columns.
-#'
-#' \itemize{
-#'   \item 500 sequences
-#'   \item 4 columns
-#' }
-#'
-#' @docType data
-#' @keywords datasets
-#' @name COt
-#' @usage data(COt)
-#' @format A data frame of time-dependant covariates with 500 sequences and 4 columns.
-"COt"
-
-
-
-
-NULL
+#' @name gameadd
+#' @usage data(gameadd)
+#' @format A data frame containing 500 rows, 4 states variable, 3 covariates
+#' and a time-dependent covariate.
+"gameadd"

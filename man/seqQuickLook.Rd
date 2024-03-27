@@ -2,35 +2,46 @@
 % Please edit documentation in R/seqQuickLook.R
 \name{seqQuickLook}
 \alias{seqQuickLook}
-\title{Numbering NAs and types of gaps among a dataset}
+\title{Summary of the types of gaps among a dataset}
 \usage{
-seqQuickLook(OD, np = 1, nf = 0)
+seqQuickLook(data, var = NULL, np = 1, nf = 1)
 }
 \arguments{
-\item{OD}{\code{matrix} object containing sequences of a variable with missing data (coded as \code{NA}).}
+\item{data}{a data.frame where missing data are coded as NA or 
+a state sequence object built with \link[TraMineR]{seqdef} function}
 
-\item{np}{\code{numeric} object corresponding to the number of previous observations in the imputation model of the internal gaps (default \code{1}).}
+\item{var}{the list of columns containing the trajectories. 
+Default is NULL, i.e. all the columns.}
 
-\item{nf}{\code{numeric} object corresponding to the number of future observations in the imputation model of the internal gaps (default \code{0}).}
+\item{np}{number of previous observations in the imputation model of the 
+internal gaps.}
+
+\item{nf}{number of future observations in the imputation model of the 
+internal gaps.}
 }
 \value{
-It returns a  \code{data.frame} object that summarizes for each type of gaps 
-(Internal Gaps, Initial Gaps, Terminal Gaps, LEFT-
-hand side SLG, RIGHT-hand side SLG, Both-hand side SLG),
-the minimum length, the maximum length, the total number of gaps and 
-the total number of NAs induced.
+Returns a  \code{data.frame} object that summarizes, for each 
+type of gaps (Internal Gaps, Initial Gaps, Terminal Gaps, 
+LEFT-hand side SLG, RIGHT-hand side SLG, Both-hand side SLG),
+the minimum length, the maximum length, the total number of gaps and
+the total number of missing they contain.
 }
 \description{
-\code{seqQuickLook.R} is a function aimed at providing an overview of the
-number and size of the different types of gaps
-spread in the original dataset \code{OD}.
+The \code{seqQuickLook()} function aimed at providing an overview of the
+number and size of the different types of gaps 
+spread in the original dataset.
+}
+\details{
+The distinction between internal and SLG gaps depends on the 
+number of previous (\code{np}) and future (\code{nf}) observations that are 
+set for the \code{MICT} and \code{MICT-timing} algorithms.
 }
 \examples{
-data(OD)
+data(gameadd)
 
-seqQuickLook(OD=OD, np=1, nf=0)
+seqQuickLook(data = gameadd, var = 1:4, np = 1, nf = 1)
 
 }
 \author{
-Andre Berchtold <andre.berchtold@unil.ch>
+Andre Berchtold and Kevin Emery
 }
