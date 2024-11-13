@@ -28,10 +28,34 @@ test_that("function works", {
 })
 
 ## e. seqobject NA as code ####
-gameadd.seq <- seqdef(gameadd.traj, right=NA, nr=NA)
+gameadd.seq <- seqdef(gameadd.traj, right=NA)
 test_that("function works", {
   skip_on_cran()
   expect_no_error(seqmissfplot(gameadd.seq))
+})
+
+
+gameadd.seq <- seqdef(gameadd.traj)
+## f void.miss #####
+test_that("function works", {
+  skip_on_cran()
+  expect_no_error(seqmissfplot(gameadd.seq,void.miss=FALSE))
+})
+
+test_that("function works", {
+  skip_on_cran()
+  expect_no_error(seqmissfplot(gameadd.seq,void.miss=FALSE, with.complete=F))
+})
+
+test_that("function works", {
+  skip_on_cran()
+  expect_no_error(seqmissfplot(gameadd.seq,void.miss=FALSE, with.complete=T))
+})
+
+## g idxs ####
+test_that("function works", {
+  skip_on_cran()
+  expect_no_error(seqmissfplot(gameadd.seq,void.miss=FALSE,idxs=1:5))
 })
 
 # 2. seqmissIplot ####
@@ -63,10 +87,38 @@ test_that("function works", {
 })
 
 ## e seq with NA code ####
-gameadd.seq <- seqdef(gameadd.traj, right=NA, nr=NA)
+gameadd.seq <- seqdef(gameadd.traj, right=NA)
 test_that("function works", {
   skip_on_cran()
   expect_no_error(seqmissIplot(gameadd.seq))
+})
+
+gameadd.seq <- seqdef(gameadd.traj)
+## f void.miss #####
+test_that("function works", {
+  skip_on_cran()
+  expect_no_error(seqmissIplot(gameadd.seq,void.miss=FALSE))
+})
+
+test_that("function works", {
+  skip_on_cran()
+  expect_no_error(seqmissIplot(gameadd.seq,void.miss=FALSE, with.complete=F))
+})
+
+test_that("function works", {
+  skip_on_cran()
+  expect_no_error(seqmissIplot(gameadd.seq,void.miss=FALSE, with.complete=T))
+})
+
+## g from.end####
+test_that("function works", {
+  skip_on_cran()
+  expect_no_error(seqmissIplot(gameadd.seq,void.miss=FALSE, sortv="from.end"))
+})
+
+test_that("function works", {
+  skip_on_cran()
+  expect_no_error(seqmissIplot(gameadd.seq,void.miss=TRUE, sortv="from.end"))
 })
 
 # 3. seqmissimplic ####
@@ -79,4 +131,11 @@ test_that("function works", {
 test_that("sequence works", {
   skip_on_cran()
   expect_no_error(seqmissimplic(gameadd.seq, var=1:4))
+})
+
+gameadd.seq <- seqdef(gameadd.traj)
+## f void.miss #####
+test_that("function works", {
+  skip_on_cran()
+  expect_no_error(seqmissimplic(gameadd.seq,void.miss=FALSE))
 })
